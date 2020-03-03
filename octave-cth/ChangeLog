@@ -1,0 +1,468 @@
+2018-10-25  dale@health.usf.edu
+
+	* inst/compare_types.m: more mods to support lareflex, also refactor to
+	make future additions easier.
+	* inst/findpair.m: mods for lareflex.
+	* configure.ac: bump to 1.3.10
+
+2018-10-24  dale@health.usf.edu
+
+	* inst/cth_project.m: many mods to support lareflex type. Refactor the code
+	to make it easier to add in new types in the future.
+	* inst/cluster_with_types.m: major refactoring to make it easier to add new
+	types.
+
+2018-10-23  dale@health.usf.edu
+
+	* inst/archnums.m: support for larflex archetypes, periods 12 & 13.
+	* inst/chkfor_ctl_lareflex.m: new file to support lareflex periods.
+	* inst/concat_types.m: support for lareflex.
+	* inst/cthinfo.m: ditto.
+	* inst/cthinfo.m: ditto.
+	* inst/concat_types.m: fix bug, arc should have been arch. How did the
+	swallow stuff *ever* work?
+
+2018-09-24  dale@health.usf.edu
+
+	* inst/period2str.m: change swallow and lareflx control strings to be
+	CONTROL, because that is what it really is.
+
+2018-09-21  dale@health.usf.edu
+
+	* inst/drawbar.m: make the font just a bit larger. Can barely read it on
+	some monitors.
+
+2018-09-20  dale@health.usf.edu
+
+	* inst/period2str.m: add in support for lareflex.
+	* inst/drawbar.m: ditto.
+
+2018-09-19  dale@health.usf.edu
+
+	* inst/export_db.m: Fix conceptual error. Assumed that the seq# for
+	                    all of the cth names were 1-N. When clustering and
+							  exporting a subset of a .cth file, this is not true,
+							  can be 100, 103, 334, 400, 1001, etc.
+	* inst/cth_project.m: add in archetype param to export_db call.
+	* configure.ac: bump up to 1.3.9.
+
+2018-08-20  dale@health.usf.edu
+
+	* inst/cth_project.m: Add option to not filter out flats so they can be
+	included in clustering. This is mainly to avoid throwing away sparse CTHs,
+	which always wind up in the flats CTH set.
+	* configure.ac: bump up to 1.3.8
+
+2018-07-26  dale@health.usf.edu
+
+	* debian/control: discover during release libcurl3 is gone, need libcurl4
+
+2018-07-20  dale@health.usf.edu
+
+	* inst/ctlstim_clust.m: remove restriction that we do not do ctl/swallow
+	because there was a time when there never was ctl/swallow, just swallow.
+	* src/dijkstra.cpp: octave has changed, int * is now long int * for a
+	couple of vars.
+	* configure.ac: bump to 1.3.7
+
+2018-05-16  dale@health.usf.edu
+
+	* inst/cth_project.m: add process ID to window title so concurrent runs do
+	not hijack output windows (uses window title to find window id).
+	* configure.ac: bump up to 1.3.6.
+
+2018-04-27  dale@health.usf.edu
+
+	* inst/cthinfo.m: the odd is ctl, even is stim no longer works. swallow ctl
+	is 10 and swall stim is 11.
+	* configure.ac: bump up to 1.3.5.
+
+2018-03-23  dale@health.usf.edu
+
+	* debian/rules: during pkg release, discover octave-pkg.mk has moved.
+	rules file.
+
+2018-03-16  dale@health.usf.edu
+
+	* configure.ac: bump up to v 1.3.4
+	* Makefile.am: building the .mex file was done in wrong dir.
+
+2018-03-15  dale@health.usf.edu
+
+	* inst/export_db.m: sense when archetypes are being clustered.
+
+2018-03-09  dale@health.usf.edu
+
+	* inst/init_consts.m: Add more colors. It breaks the bstem program when
+	colors wrap around, because it thinks color == cluster. Adding the second
+	swallow archetype runs out of colors.
+
+2018-03-06  dale@health.usf.edu
+
+	* inst/export_clust.m: mods for swallow cth types.
+	* inst/findpair.m: ditto.
+	* inst/cluster_with_types.m: ditto.
+	* inst/name2period.m: create to improve maintainability.
+
+2018-02-07  dale@health.usf.edu
+
+	* inst/archnums.m: create to have one place where archetype magic numbers
+	are maintained.
+
+2018-01-22  dale@health.usf.edu
+
+	* inst/concat_types.m: add in support for swallow archetypes.
+
+2017-12-22  dale@health.usf.edu
+
+	* inst/ctlstim_clust.m: support for swallow1 periods.
+	* inst/export_clust.m: ditto
+	* inst/period2str.m: ditto
+	* inst/drawbar.m: ditto
+	* inst/cthinfo.m: ditto
+
+2017-10-26  dale@health.usf.edu
+
+	* debian/postinst.template: Move old tar file to /lab/SOURCES/old.
+
+2017-07-28  dale@health.usf.edu
+
+	* src/Makefile: Create the src directory so octave will rebuild the files
+	in it as part of creating the package.
+
+2017-07-27  dale@health.usf.edu
+
+	* configure.ac: bump up to 1.3.3.
+
+2017-07-24  dale@health.usf.edu
+
+	* inst/cth_project.m: add in support for Export Ctl/Stim pairs that changed
+	clusters.
+
+2017-06-06  dale@health.usf.edu
+
+	* inst/cthinfo.m: Addin support for ctl/stim window showing possible effect
+	of stim.
+	* inst/cth_project.m: add in feature to close just the cth info windows.
+	After a couple of info requests, the screen gets very cluttered.
+
+2017-05-10  dale@health.usf.edu
+
+	* inst/period2str.m: Add in cough ctl/stem types.
+
+2017-04-27  dale@health.usf.edu
+
+	* inst/showisobars.m: Used wrong value for max columns and fails if the #
+	of required columns is less than the max allowed.
+
+2017-04-26  dale@health.usf.edu
+
+	* inst/export_db.m: Fix bug where exported flats did not have an exp name.
+	* inst/concat_types.m: add in support for adding new cths later and not
+	clobber the sequence by reserving a range of type numbers for i, lrm, and e
+	classes.
+
+2017-04-24  dale@health.usf.edu
+
+	* inst/findsibs.m: Handle case where the exported CTH is an archetype. They
+	don't have siblings.
+
+2017-04-17  dale@health.usf.edu
+
+	* inst/plot_wins.m: refactor into plot_wins, win_pixels, and cascademon1.
+	Need more than 2 kinds of window positioning, tiling and cascading.
+
+2017-04-03  dale@health.usf.edu
+
+	* inst/cth_project.m: Move calcs for # of cth plot wins to later in flow,
+	so we always know # of clusters for every method of entry.
+	* inst/period2str.m: deal with case where .type files have no period.
+
+2017-03-31  dale@health.usf.edu
+
+	* inst/plot_wins.m: This may actually be correct in dealing with toolbars
+	and menubars.
+
+2017-03-29  dale@health.usf.edu
+
+	* DESCRIPTION: Bump up to 1.2.9 for release.
+
+2017-03-27  dale@health.usf.edu
+
+	* inst/plot_wins.m: Need to draw test window so all of it shows, more
+	towards center of screen.
+
+2017-03-23  dale@health.usf.edu
+
+	* inst/plot_wins.m: add in additional params and calcs so we can tile the
+	monitors with up to 8 x 8 windows. Makes it a lot easier to compare CTH
+	means.
+	* configure.ac: bump to 1.2.9.
+
+2017-02-22  dale@health.usf.edu
+
+	* inst/plot_wins.m: New function to adapt to different monitor sizes based
+	on m x n plot windows.
+	* inst/tilemon1d1.m: adjust to use plot_wins.
+	* inst/tilemon1d2.m: adjust to use plot_wins.
+	* inst/tilemon2d1.m: adjust to use plot_wins.
+	* inst/tilemon2d2.m: adjust to use plot_wins.
+
+2017-02-21  dale@health.usf.edu
+
+	* inst/export_clust.m: check to see if flatlist is empty. For loop will
+	execute once even if it is.
+
+2017-02-17  dale@health.usf.edu
+
+	* inst/cth_project.m: Bug fixes for ZeroFlat reference in some rarely-used
+	paths through the code.
+
+2017-01-24  dale@health.usf.edu
+
+	* inst/loc_menu.m: add option to have no default selection.:
+
+2017-01-20  dale@health.usf.edu
+
+	* inst/scroll_plots.m: force pending draws before activating current plot
+	windows, sometimes this happens before pending updates and the wrong plot
+	windows wind up on top.
+
+2017-01-19  dale@health.usf.edu
+
+	* inst/cth_project.m: add in scrn_cap flag to alter how some windows are
+	displayed for screen captures. Scrolling fixes, sorta, but you can still
+	close cth windows and really mess things up.
+
+2017-01-18  dale@health.usf.edu
+
+	* inst/scroll_plots.m: fix crash bug if user closes plot window. Display
+	still kind of messed up, but does not crash.
+
+2017-01-17  dale@health.usf.edu
+
+	* inst/cth_classify.m: fix bug, was using cluster # instead of distance for
+	first cth. Only noticable when there is only 1 cth in the cluster and the
+	center and the cth are the same.
+
+2017-01-10  dale@health.usf.edu
+
+	* configure.ac: 1.2.8 released.
+
+2017-01-09  dale@health.usf.edu
+
+	* Makefile.am: Automate updating the DESCRIPTION version string. I keep
+	forgetting to do that by hand.
+	* inst/save_clust.m: Fix bug, variable name misspelled.
+	* configure.ac: Bump up to version 1.2.8.
+
+2017-01-06  dale@health.usf.edu
+
+	* DESCRIPTION: Forgot to bump this up to 1.2.6, so bump it up to 1.2.7 
+	* configure.ac: And ditto.
+
+2017-01-05  dale@health.usf.edu
+
+	* configure.ac: Bump to 1.2.6 for new release.
+
+2016-12-19  dale@health.usf.edu
+
+	* inst/num_monitors.m: fix bug that caused error if only one monitor.
+
+2016-12-13  dale@health.usf.edu
+
+	* DESCRIPTION: Update version and add explicit >= versions for octave pkgs.
+	* debian/control: Ditto.
+
+2016-12-01  dale@health.usf.edu
+
+	* configure.ac: bump up to 1.2.5.
+
+2016-09-13  dale@health.usf.edu
+
+	* inst/showbars.m: Modify to handle case where some clustering algos have
+	empty clusters, such as the fuzzy C means.  Kmeans can also do this.
+
+2016-08-02  dale@health.usf.edu
+
+	* inst/win_consts.m: redo this so it get real info about the real size of plot
+	windows.  It is amazingly hard to figure out what the window manager/X11
+	are doing when the windows are drawn.
+
+2016-08-01  dale@health.usf.edu
+
+	* inst/calc_slots_m1.m: use num_monitors function instead of guessing about
+	monitor x,y,w,h
+	* inst/calc_slots_m2.m: ditto
+	* inst/calc_slots_m2.m: ditto
+	* inst/cthinfo.m: ditto
+	* inst/tilemon1d1.m: ditto
+	* inst/tilemon1d2.m: ditto
+	* inst/tilemon2d1.m: ditto
+	* inst/tilemon2d2.m: ditto
+
+2016-07-29  dale@health.usf.edu
+
+	* inst/export_db.m: terminate loop if point is not in file because it is a
+	subset of a larger collection of points.
+
+2016-04-22  dale@health.usf.edu
+
+	* DESCRIPTION: update the version, forgot I have to do this in two places.
+	* configure.ac: bump to 1.2.4 to pick up the above fix.
+
+2016-04-21  dale@health.usf.edu
+
+	* inst/export_db.m: correct syntax error, will need to roll a new version.
+	* configure.ac: bump up to v 1.2.3.
+
+2016-04-19  dale@health.usf.edu
+
+	* configure.ac: bump rev up to 1.2.2
+
+2016-04-13  dale@health.usf.edu
+
+	* debian/control: add in new deps.
+
+2016-04-12  dale@health.usf.edu
+
+	* inst/chk_for_gui_cmd.m: ugly hack to deal with spaces in dir and fnames.
+
+2016-04-11  dale@health.usf.edu
+
+	* inst/export_clust.m: add cth and normalize (0-1) cth columns
+
+2016-03-02  dale@health.usf.edu
+
+	* inst/init_consts.m: remove unused pdist functions.
+
+2016-03-01  dale@health.usf.edu
+
+	* inst/scroll_plots.m: fix wrap-around bug when scrolling backwards.
+
+2016-02-29  dale@health.usf.edu
+
+	* inst/init_consts.m: add in color-blind friendly color palette (misnamed
+	"high contrast" in earlier versions.)
+
+2016-02-25  dale@health.usf.edu
+
+	* inst/cthinfo.m: use passed in colors array, not global one, to handle
+	high contrast color case
+	* inst/loc_dense_cluster.m: fix color array error, wrap around when hit
+	limit.
+
+2016-02-12  dale@health.usf.edu
+
+	* inst/cthinfo.m: Out of bounds checking fails for cluster subset files.
+	Don't check for max, just underflow.
+
+2016-01-15  dale@health.usf.edu
+
+	* inst/cth_project.m: fix bug in terminal mode, calling wrong cthinfo
+	function.  Change default on isomaps to No
+	* configure.ac: bump up to 1.2.1
+	* DESCRIPTION: bump up to 1.2.1
+	* inst/cthinfo.m: fix bug in how one tick bins are displayed.  Was still
+	drawing non-vertical lines.
+
+2016-01-14  dale@health.usf.edu
+
+	* configure.ac: Release 1.2.0
+	* inst/gplot3.m: The octave-plot package has disappeared, and we need this
+	function, so we include it here and no longer depend on octave-plot.
+	* debian/control: Remove dependency on octave-plot.
+	* inst/cth_project.m: Remove pkg load plot.
+	* DESCRIPTION: Did it again, forgot to bump up rev to 1.2.0
+
+2016-01-12  dale@health.usf.edu
+
+	* inst/loc_cophenet.m: fixed bug in how return value d was created.  Need
+	to write to (i,j) and (j,i) to make symmetric matrix.
+
+2015-09-09  dale@health.usf.edu
+
+	* inst/loc_dendrogram.m: change name from dendogram to denrogram.  The
+	latter is the correct term.  Octave 4.x also changed the original file name.
+
+2015-08-24  dale@health.usf.edu
+
+	* debian/control: remove octave:Depends, no longer supported, it is enough
+	to just depend on ocatve, and it will (they say) take care of the rest.
+
+2015-08-04  dale@health.usf.edu
+
+	* inst/dijkstra.m: rename the .mex file so lookfor will not crashing trying
+	to read in the .mex file.
+
+2015-07-30  dale@health.usf.edu
+
+	* inst/showcurves.m: adjustments to new curve format.  Can be any length,
+	nothing to do with # of bins in the CTH plots.
+
+2015-06-09  dale@health.usf.edu
+
+	* inst/cth_project.m: Fix a couple of bugs in plotting kmeans data.
+
+2015-06-01  dale@health.usf.edu
+
+	* DESCRIPTION: Forgot to bump rev up in this file.  Now 1.1.4.
+
+2015-05-29  dale@health.usf.edu
+
+	* r/cth_curve.R: It's now all jupp all the time.  Remove conditional stuff
+	for doing non-jupp. 
+
+2015-05-22  dale@health.usf.edu
+
+	* inst/cth_project.m: 1.1.0 release.  Some support for showing fitted
+	curves, but more to be done on it.
+
+2015-03-11  dale@health.usf.edu
+
+	* inst/showbars.m: add pts to param list.  Used to pick them up using var
+	names, but can only use evalin names one caller level deep, and now there are 
+	two or more.  Probably faster this way, too.
+
+2015-03-09  dale@health.usf.edu
+
+	* inst/mod_depth1.m: rename from mod_depth.m
+
+2015-03-03  dale@health.usf.edu
+
+	* DESCRIPTION: add octave-plot to pick up gplot3 function.
+	* debian/control: add octave-plot
+
+2015-02-26  dale@health.usf.edu
+
+	* inst/cth_project.m: major rework of how data is stored in .cth files.
+	Each pt in a struct instead of multiple matrices ordered the same way.
+
+2015-02-12  dale@health.usf.edu
+
+	* debian/control: add xdotool to depends list.  Much better way to manage
+	scrolling through the cth plot windows.
+	* inst/cth_project.m: add scrolling plots
+	* inst/chk_for_gui_cmd.m:  add scrolling plots
+
+2015-01-20  dale@health.usf.edu
+
+	* inst/drawbar.m: minor cosmetic adjusts, stop chopping off part of right-most bar
+
+2015-01-15  dale@health.usf.edu
+
+	* inst/basis2d.m: remove error, up to caller to report problems
+	* inst/cth_project.m: handle no-basis case in pair-wise plots, so program
+	will not crash.
+
+2015-01-09  dale@health.usf.edu
+
+	* inst/cth_project.m: remove load of io & control packages, we 
+	don't use anything in these.
+	* debian/control: remove io, control dependencies
+	* DESCRIPTION: remove io, control dependencies
+
+2014-12-18  dale@health.usf.edu
+
+	* Create as a debian/octave package
+

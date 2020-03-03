@@ -1,0 +1,5 @@
+Many of these files are used as part of the cth clustering project software.
+There are a couple of demos, and a few used for testing and debugging.  The
+casual user will almost certainly never run any of these.  But feel free to
+start octave and play with them if you like.
+

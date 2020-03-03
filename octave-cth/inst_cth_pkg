@@ -1,0 +1,42 @@
+#!/usr/bin/octave -qfW
+
+warning("off");
+num_args = nargin;
+if num_args != 2
+   printf("This script expects a version string and a path to the version .tar.gz file\n");
+   return;
+end
+
+args = argv();
+pkgver = args{1};
+pkgfile = args{2};
+
+must_install = 1;
+checkfor = pkg("list", "octave-cth");
+
+if ~isempty(checkfor)
+  currver = checkfor{1}.version;
+  if ~isempty(currver)
+    if strcmp(currver,pkgver) == 1
+      must_install = 0; 
+    end
+  end
+end
+if must_install
+   [info, err, msg] = stat(pkgfile);
+   if isempty(info) || err == -1
+     printf("Cannot find the package file %s\n",pkgfile);
+     return;
+   else
+     printf("%s is not installed, installing it now\n",pkgfile);
+     try
+        res = pkg("install",pkgfile);
+     catch
+        printf("Error installing package, is this a valid package file?\n");
+        return;
+     end
+   end
+else
+   printf("%s is already installed\n",pkgfile);
+end
+

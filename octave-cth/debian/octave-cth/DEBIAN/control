@@ -1,0 +1,11 @@
+Package: octave-cth
+Version: 1.0.0
+Architecture: all
+Maintainer: dshuman
+Installed-Size: 192
+Depends: octave (>= 3.8.2)
+Section: math
+Priority: optional
+Description: functions for cth cluster analysis
+ .
+ functions for cth cluster analysis

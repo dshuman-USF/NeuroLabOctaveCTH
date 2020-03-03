@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+#include /usr/share/dpkg/default.mk
+
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+#%:
+#	echo "   >>>>> CATCH COMMAND"
+#	echo $@
+
+#override_dh_clean:
+#	make clean
+
+#	dh $@  --with autotools-dev
+
+#override_dh_auto_build:
+#	make DESCRIPTION
+
+#this is where things get installed.  The default is /usr 
+#override_dh_auto_configure:
+#	dh_auto_configure -- --prefix=/usr/local --disable-option-checking
+
+# this complains and causes an error that stops things, 
+# we don't need it, so do nothing 
+#override_dh_usrlocal:
+
+#dh_pre_build:
+#include /usr/share/octave/debian/defs.make
+#include /usr/share/octave-pkg-dev/octave-pkg.mk
+
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+%:
+	dh $@ --buildsystem=octave --with=octave
+
+
+
+

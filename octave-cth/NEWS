@@ -1,0 +1,14 @@
+===============================================================================
+cth_octave-1.1.0  Release Date: 2014-25-14 
+===============================================================================
+Enhancements and bug fixes.
+
+===============================================================================
+cth_octave-1.0.0  Release Date: 2014-18-14 
+===============================================================================
+
+The octave programs in this package are part of CTH cluster analysis package.
+There is a separate GUI referenced by cth_project.m.  This package can be
+executed in a terminal-only mode, but is easier to work with using the cthgui
+GUI executable, which is available in the cth-cluster package.
+

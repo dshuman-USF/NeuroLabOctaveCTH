@@ -1,0 +1,2556 @@
+# doc-cache created by Octave 4.0.0
+# name: cache
+# type: cell
+# rows: 3
+# columns: 74
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+Isomap
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1236
+ ISOMAP   Computes Isomap embedding using the algorithm of 
+             Tenenbaum, de Silva, and Langford (2000). 
+
+ [Y, R, E, C] = isomap(D, n_fcn, n_size, options); 
+
+ Input:
+    D = N x N matrix of distances (where N is the number of data points)
+    n_fcn = neighborhood function ('epsilon' or 'k') 
+    n_size = neighborhood size (value for epsilon or k) 
+
+    options.dims = (row) vector of embedding dimensionalities to use
+                        (1:10 = default)
+    options.comp = which connected component to embed, if more than one. 
+                        (1 = largest (default), 2 = second largest, ...)
+    options.display = plot residual variance and 2-D embedding?
+                        (1 = yes (default), 0 = no)
+    options.overlay = overlay graph on 2-D embedding?  
+                        (1 = yes (default), 0 = no)
+    options.verbose = display progress reports? 
+                        (1 = yes (default), 0 = no)
+
+ Output: 
+    Y = Y.coords is a cell array, with coordinates for d-dimensional embeddings
+         in Y.coords{d}.  Y.index contains the indices of the points embedded.
+    R = residual variances for embeddings in Y
+    E = edge matrix for neighborhood graph
+    C = Number of components 
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ ISOMAP   Computes Isomap embedding using the algorithm of 
+             Tenenba
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+IsomapII
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2913
+ ISOMAPII   Computes Isomap embedding using an advanced version of
+             the algorithm in Tenenbaum, de Silva, and Langford (2000), 
+             which can take advantage of sparsity in the graph and 
+             redundancy in the distances. 
+
+ [Y, R, E, C] = isomapII(D, n_fcn, n_size, options); 
+
+ Input:
+    D = input-space distances between pairs of N points, which can 
+     take 1 of 3 forms: 
+      (1) a full N x N matrix (as in isomap.m)  
+      (2) a sparse N x N matrix (missing entries are treated as INF)
+      (3) the name of a function (e.g. 'd_fun') that takes
+            one argument, i, and returns a row vector containng the 
+            distances from all N points to point i. 
+
+    n_fcn = neighborhood function ('epsilon' or 'k') 
+    n_size = neighborhood size (value for epsilon or k) 
+
+    options = optional structure of options:
+      options.dims = (row) vector of embedding dimensionalities to use
+                        (1:10 = default)
+      options.comp = which connected component to embed, if more than one. 
+                        (1 = largest (default), 2 = second largest, ...)
+      options.display = plot residual variance and 2-D embedding?
+                        (1 = yes (default), 0 = no)
+      options.overlay = overlay graph on 2-D embedding?  
+                        (1 = yes (default), 0 = no)
+      options.verbose = display progress reports? 
+                        (1 = yes (default), 0 = no)
+      options.dijkstra = use dijkstra's algorithm for shortest paths with
+                         full N x N distance matrix. 
+                         (1 = yes (default), 0 = use Floyd; Floyd should
+                          be used only if you are unable to MEX dijkstra.cpp)
+      options.Kmax = maximum number of neighbors (used for sparse versions
+                        of epsilon; by default, estimated by random sample)
+      options.landmarks = (row) vector of landmark points to use in MDS. 
+                 (MDS finds the configuration that best approximates
+                  the distances from all points to the landmark points.
+                  The default landmark points are 1:N (i.e. all the points), 
+                  which is equivalent to classical MDS.  Good 
+                  results may often be obtained using a number of
+                  landmarks that is much smaller than N, but much
+                  larger than the data's intrinsic dimensionality.
+                  Note that this extension is experimental!  For
+                  discussion, see Steyvers, de Silva, and Tenenbaum
+                  (in preparation).)
+
+ Output: 
+    Y = Y.coords is a cell array, with coordinates for d-dimensional embeddings
+         in Y.coords{d}.  Y.index contains the indices of the points embedded.
+    R = residual variances for embeddings in Y
+    E = edge matrix for neighborhood graph
+    C = Number of connected components 
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ ISOMAPII   Computes Isomap embedding using an advanced version of
+             
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+L2_distance
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 522
+ L2_DISTANCE - computes Euclidean distance matrix
+
+ E = L2_distance(A,B)
+
+    A - (DxM) matrix 
+    B - (DxN) matrix
+    df = 1, force diagonals to be zero; 0 (default), do not force
+ 
+ Returns:
+    E - (MxN) Euclidean distances between vectors in A and B
+
+
+ Description : 
+    This fully vectorized (VERY FAST!) m-file computes the 
+    Euclidean distance between two vectors by:
+
+                 ||A-B|| = sqrt ( ||A||^2 + ||B||^2 - 2*A.B )
+
+ Example : 
+    A = rand(400,100); B = rand(400,200);
+    d = distance(A,B);
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 49
+ L2_DISTANCE - computes Euclidean distance matrix
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+basis2d
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 380
+ Calculate the 2D orthgognal normalized basis for the plane determined by
+ three points in N space using modfied Gram-Schmidt algorithm.
+ INPUTS:
+         3 points in N space
+ OUTPUTS:        
+         2 orthogonal vectors that are a basis for plane in N space
+         status = 1 
+         OR
+         empty vectors
+         status = 0 on error, such as all points are on a line
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Calculate the 2D orthgognal normalized basis for the plane determined by
+ three
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+basis3d
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 533
+ Calculate the 3D orthgognal normalized basis for the space determined by four
+ points in N space using modfied Gram-Schmidt algorithm.
+ INPUTS:
+         4 points in N space
+ OUTPUTS:        
+         3 orthogonal vectors that are a basis for 3-space in N space
+         status = 1 
+         OR
+         empty vectors
+         status = 0 on error, such as all points are on a line
+ Ref:
+ http://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process#Numerical_stability
+ also:
+ http://www.math.uconn.edu/~troby/Math2210S14/LT/sec6_4.pdf
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Calculate the 3D orthgognal normalized basis for the space determined by four
+ 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+blankbar
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 60
+ last set is probably not a full one, show empty subplot(s)
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 60
+ last set is probably not a full one, show empty subplot(s)
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 5
+blink
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 88
+ Blink the passed in point(s) by drawing a white circle or
+ sphere around the point(s).
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Blink the passed in point(s) by drawing a white circle or
+ sphere around the po
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+calc_slots_m1
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 181
+ draw a set of invisible plot windows on monitor 1, get the real screen locations
+ and sizes of the bar plot window.  Since we don't actually bars on mon 1,
+ why are we doing this?
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ draw a set of invisible plot windows on monitor 1, get the real screen location
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+calc_slots_m2
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 117
+ draw a set of invisible plot windows on monitor 2, get the real screen locations
+ and sizes of the bar plot windows
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ draw a set of invisible plot windows on monitor 2, get the real screen location
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+chk_for_gui_cmd
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 535
+ Wait for user input from the gui.  This can be used to poll
+ in a busy-wait state, or it can stay local until something shows
+ up from the gui.
+ The type of input from the gui can be:
+ CONTROLS - values from the gui controls
+ CMD      - text from command input control, use eval to run it
+            some values can be returned, but not all are passed back
+ PARAMS  - text from Send Param window - used to send values back
+           in response to a prompt
+ SHOW_HIDE - Show clusters in the stereotaxic plot from Sterotaxic control
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+ Wait for user input from the gui.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+cth_project
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 595
+ Function for all sorts of ways to play with CTH's
+ and see if they cluster.
+ Two ways to run it:
+  Default:  Running the run_cthgui or run_cthterm script.
+  Directly: In octave, invoke with args to us gui or terminal ui
+ You can also start this with an optional port number.  This is useful for
+ debugging.  It assumes you have aready started the gui and given it a port
+ number as an argument, so it just tries to connect with the given port
+ number.  This lets you have control over which port you want to use, and also
+ the order you start the programs, like starting cth_gui in a debugger.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 76
+ Function for all sorts of ways to play with CTH's
+ and see if they cluster.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+cthinfo
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 661
+ Show interesting info about some CTHs
+  INPUTS:
+          cths:      Vector of cth numbers.  These are the sequence numbers
+                     that are the last field in the cth data structure, and
+                     also the index into same.
+          CthVars:   Contents of CTH file(s), in cth number order.
+          names:     All cth var names in seq # order
+          namesnof:  The names of non-flats in seq# order
+          flatnames: Flats names in seq# order
+          dend:      Dendogram clusters info 
+          plot_fig:  Handle of the projection figure
+          proj_nof:  Array of projected points
+          colors:    Current color array
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Show interesting info about some CTHs
+  INPUTS:
+          cths:      Vector of 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+custdist
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 375
+ (re)create the custom distance matrix from the provided set of point var names
+ Inputs:  names: list of pt names in a cell strings
+ Output:  distance matrix the custome one from cth_cluster program
+          or the pdist function.
+ Assumes: The MeanSclStdErr matrix is:
+           rows = # of bins
+           2 cols:
+           possibly scaled mean rate      scaled std err
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ (re)create the custom distance matrix from the provided set of point var names
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+demo_basis3d
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+ plot stuff
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+ plot stuff
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+demo_mod_depth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+ pt 31 cth_selected20
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+ pt 31 cth_selected20
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+dfun
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+ test function
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+ test function
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+dijk
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1041
+DIJK Shortest paths from nodes 's' to nodes 't' using Dijkstra algorithm.
+ D = dijk(A,s,t)
+     A = n x n node-node weighted adjacency matrix of arc lengths
+         (Note: A(i,j) = 0   => Arc (i,j) does not exist;
+                A(i,j) = NaN => Arc (i,j) exists with 0 weight)
+     s = FROM node indices
+       = [] (default), paths from all nodes
+     t = TO node indices
+       = [] (default), paths to all nodes
+     D = |s| x |t| matrix of shortest path distances from 's' to 't'
+       = [D(i,j)], where D(i,j) = distance from node 'i' to node 'j' 
+
+	(If A is a triangular matrix, then computationally intensive node
+   selection step not needed since graph is acyclic (triangularity is a 
+   sufficient, but not a necessary, condition for a graph to be acyclic)
+   and A can have non-negative elements)
+
+	(If |s| >> |t|, then DIJK is faster if DIJK(A',t,s) used, where D is now
+   transposed and P now represents successor indices)
+
+  (Based on Fig. 4.6 in Ahuja, Magnanti, and Orlin, Network Flows,
+   Prentice-Hall, 1993, p. 109.)
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 73
+DIJK Shortest paths from nodes 's' to nodes 't' using Dijkstra algorithm.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+dijkstra
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1548
+
+      Mark Steyvers, Stanford University, 12/19/00
+
+
+ DIJKSTRA  Find shortest paths in graphs
+ 	D = dijkstra( G , S ) use the full or sparse matrix G in which 
+ 	an entry (i,j) represents the arc length between nodes i and j in a 
+	graph. In a full matrix, the value INF represents the absence of an arc; 
+	in a sparse matrix, no entry at (i,j) naturally represents no arc.
+		
+	S is the one-dimensional matrix of source nodes for which the shortest
+	to ALL other nodes in the graphs will be calculated. The output matrices
+	D and P contain the shortest distances and predecessor indices respectively.
+	An infinite distance is represented by INF. The predecessor indices contain
+	the node indices of the node along the shortest path before the destination
+	is reached. These indices are useful to construct the shortest path with the
+	function pred2path (by Michael G. Kay).
+
+	This function was implemented in C++. The source code can be compiled to a
+	Matlab compatible mex file by the command "mex -O dijkstra.cpp" at the Matlab
+	prompt. In this package, we provide a compiled .dll version that is 
+       compatible all Windows based machines.  If you are not working on a 
+       Windows platform, delete the .dll version provided and recompile from
+       the .cpp source file.  If you do not have the Matlab compiler or a Windows
+       platform, delete the .dll version and dijkstra will then call the
+	Matlab function dijk.m (by Michael G. Kay).  Note that this Matlab
+	code is several orders of magnitude slower than the C based mex file.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 51
+
+      Mark Steyvers, Stanford University, 12/19/00
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+drawArrow
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 748
+ -- Function File: H = drawArrow (X1, Y1, X2, Y2)
+ -- Function File: H = drawArrow ([ X1 Y1 X2 Y2])
+ -- Function File: H = drawArrow (..., L, W,R,TYPE)
+     Draw an arrow on the current axis.
+
+     Draw an arrow between the points (X1 Y1) and (X2 Y2).  The points
+     can be given as a single array.  L, W specify length and width of
+     the arrow.
+
+     The length wings of the arrow can be modified with R.  By default R
+     is 0.1, giving a wing legnth of 0.1*L.
+
+     Also specify arrow type.  TYPE can be one of the following : 0:
+     draw only two strokes 1: fill a triangle .5: draw a half arrow (try
+     it to see ...)
+
+     Arguments can be single values or array of size [N*1].  In this
+     case, the function draws multiple arrows.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+Draw an arrow on the current axis.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+drawbar
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 40
+ draw a cth bar graph in current figure
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 40
+ draw a cth bar graph in current figure
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+export_clust
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 301
+ Function to export cluster information so the atlas program,
+ or other programs, can display the clusters as points in 
+ the cat 3d brain atlas.
+  INPUTS:  
+   names  struct with point names in them
+   dend   the dendrogram indexes, which pts are in the cluster
+   fname  name to save to
+  OUTPUTS:
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Function to export cluster information so the atlas program,
+ or other programs
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+findclus
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 267
+ given a linkage output table and # of clusters
+ return:
+  1. 1xn matrix indicating which cluster the leaves belong to
+     in order 1-m
+  2. 2xn matrix, first is leaf numbers in left-right order
+     (like it looks in the dendrogram), second col is the cluster #
+  
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 61
+ given a linkage output table and # of clusters
+ return:
+  1.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+findcluslev
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 279
+ given a linkage output table and a distance (Y axis on plot)
+ return:
+  1. 1xn matrix indicating which cluster the leaves belong to
+     in leaf order 1-m
+  2. 2xn matrix, first is leaf numbers in left-right order
+     (like it looks in the dendrogram), second col is cluster #
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 75
+ given a linkage output table and a distance (Y axis on plot)
+ return:
+  1.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+get_dtops
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 232
+ To avoid clutter, we put the k-means stuff on the desktop to the right
+ of the primary one.  Figure out which one this is. 
+ If the window manager has only one desktop, these will be the same
+ Desktops use zero-based numbering 0-n
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ To avoid clutter, we put the k-means stuff on the desktop to the right
+ of the 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+get_win_ids
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 238
+ use the xdotool program to get the window ids for the cth plot windows
+ and the error bar plot windows.
+ This assumes the win ID numericial order correspond to the order
+ they were created in.   There may be cases where this isn't true.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ use the xdotool program to get the window ids for the cth plot windows
+ and the
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+getclusts
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 243
+ INPUTS:
+    linkage output table
+    index to start at
+    current depth which  starts at 1, recursion increments up to the max depth
+    then bails out
+ OUTPUTS
+    example final output:
+    [ 15  2
+      14  3
+      13  3
+      12  4
+    ]
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ INPUTS:
+    linkage output table
+    index to start at
+    current depth which 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+getfname
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 49
+ prompt for file name, use default on just ENTER
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 49
+ prompt for file name, use default on just ENTER
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+getleaves
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 314
+ given a linkage output table and index to
+ start at, return all children leaves on and below
+ the index.
+ e.g. for a table with 10 rows, set index = 10
+ to return all leaves.
+ This is the non-recursive version.  Was having stack overflow problems with
+ some trees using recursive one.  It is commented out below.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ given a linkage output table and index to
+ start at, return all children leaves
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+getnum
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 82
+ prompt for a number and wait until you get one.
+ use default value on just ENTER
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 48
+ prompt for a number and wait until you get one.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+getport
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 109
+ get a random port that is probably not in use 
+ (race condition is possible but very unlikely)
+ return port
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ get a random port that is probably not in use 
+ (race condition is possible but
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+getseq
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 260
+ there is some info in the var names, parse it
+ and return it  
+ format is:
+  F_<filename>_<m or p>_<neuron chan>_<total spikes>_<period>_<seq #>
+   where m or p is mean or peak normalized
+  neu: neuron #
+  tot: total spikes in cth
+  seq: sequence number 1-N
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ there is some info in the var names, parse it
+ and return it  
+ format is:
+  F_
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+gplot3
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 624
+ -- Function File: gplot3 (A, XYZ)
+ -- Function File: gplot3 (A, XYZ, LINE_STYLE)
+ -- Function File: [X, Y, Z] = gplot3 (A, XYZ)
+     Plot a 3-dimensional graph defined by A and XYZ in the graph theory
+     sense.  A is the adjacency matrix of the array to be plotted and XY
+     is an N-by-3 matrix containing the coordinates of the nodes of the
+     graph.
+
+     The optional parameter LINE_STYLE defines the output style for the
+     plot.  Called with no output arguments the graph is plotted
+     directly.  Otherwise, return the coordinates of the plot in X and
+     Y.
+
+     See also: gplot, treeplot, etreeplot, spy.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 74
+Plot a 3-dimensional graph defined by A and XYZ in the graph theory
+sense.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+guicomm
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 83
+ establish a connection with  the gui
+ we become the server, the gui sends us info
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ establish a connection with  the gui
+ we become the server, the gui sends us in
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+guiconn
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 177
+ Try to connect to gui
+ if not started with a port arg, get a random port, start the gui process
+ with the port# then listen for the gui process to connect to us until it
+ does
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Try to connect to gui
+ if not started with a port arg, get a random port, start
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+init_consts
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 77
+ This is mainly to avoid a lot of clutter early in the cth_project.m file.  
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 74
+ This is mainly to avoid a lot of clutter early in the cth_project.m file.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+isoplots
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1473
+ The cth_project file is getting entirely too big.  The isomap calculation and 
+ plotting is done here.
+ Input: Entirely too many things
+         D            - distance matrix in vector form
+         names        - var names
+         pts          - coordinates in same order as names
+         stats        - array of stats for each cth, in same order as names
+         numbins      - array of stats for each cth, in same order as names
+         isoh         - holds any existing plot handles, we add to it and return it
+         x1,y1,w1,h1  - current plot slot, we may use some  
+         colors,bkgnd - current palette
+         globalmax    - max area/peak value, used for scaling
+         num_runs     - current pass
+         do_isover    - overlay graph on isomap pts
+         do_isembed   - show first 5 embedding dimensions
+         do_isocolor  - show 3D color plot using color spectrum
+         do_errb      - show error bar plots for cths
+         do_errbscale - how to scale error bar plots
+         do_isocolor  - show 3D projection color spectrum plots
+         do_isoscale  - scale all bar charts to same scale or best fit for each
+
+ Output: The outputs from the isomap function (see it for what these are)
+         and the handle to the isomap figure.
+         As a side effect, if we use display slots, we leave the current slot
+         to be the last one we used.  The caller has to call the tilemon1d1
+         function to move to and get the next slot.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 50
+ The cth_project file is getting entirely too big.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+leafinclus
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 39
+ return all the clusters a leaf is in
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 37
+ return all the clusters a leaf is in
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+lle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 222
+ LLE ALGORITHM (using K nearest neighbors)
+
+ [Y] = lle(X,K,dmax)
+
+ X = data as D x N matrix (D = dimensionality, N = #points)
+ K = number of neighbors
+ dmax = max embedding dimensionality
+ Y = embedding as dmax x N matrix
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 42
+ LLE ALGORITHM (using K nearest neighbors)
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+loc_cophenet
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 993
+ Calcuate cophenetic correlation coefficient
+ INPUTS:
+          Z is output of linkage function
+          Y is output of pdist function
+ OUTPUTS:
+          c cophenetic correlation coefficient
+          d cophenetic distances in the same format as Y
+ Formula from: 
+
+     http://www.scielo.br/pdf/pab/v48n6/03.pdf, page 592
+ 
+
+          sum(i=1 to n-1) sum (j>i to n) (Y(ij)-my) * (Z(ij)-mz)
+    c =   _______________________________________________________
+
+       sqrt(sum(i-1 to n-1) sum (j>i to n) (Y(ij)-my)^2 *
+                  sum(i-1 to n-1) sum (j>i to n) (Z(ij)-mz)^2)
+
+   where:
+          Y(i,j) is euclidean distance between i and j from Y
+
+          Z(i,j) distance is the height of the node at which i and j
+                 are joined 
+   
+           2 
+    my = ______  * sum(i=1 to n-1) sum(j>i to n) Y(ij)
+         n(n-1)
+
+           2 
+    mz = ______  * sum(i=1 to n-1) sum(j>i to n) Z(ij)
+         n(n-1)
+
+  This isn't in the source forge pacakge, so I wrote it.  --Dale
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Calcuate cophenetic correlation coefficient
+ INPUTS:
+          Z is output of l
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+loc_dendrogram
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 843
+ -- Function File: P = dendrogram (TREE)
+ -- Function File: P, T = dendrogram (TREE)
+ -- Function File: P, T, PERM = dendrogram (TREE)
+ -- Function File: P, T, PERM,LHAND = dendrogram (TREE)
+     Plots a dendrogram using the output of function 'linkage'.
+
+     p is a vector containing the horizontal and vertical position of
+     each cluster
+
+     t is a vector containing the leaf node number for each object in
+     the original dataset.  For now, all objects are leaf nodes.
+
+     perm is the permutation of the input objects used to display the
+     dendrogram, in left-to-right order.
+
+     lhand contains the graphics handles of the vertical lines drawn in
+     the dendrogram in left-to-right order.
+
+     TODO: Return handle to lines to set properties TODO: Rescale the
+     plot automatically based on data.
+
+     See also: linkage.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 58
+Plots a dendrogram using the output of function 'linkage'.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+loc_dense_cluster
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 458
+ Create cluster list for distance matrix 
+ INPUTS:  d - output of pdist
+          percent - cut off percentage
+ OUTPUTS: cl - cluster assignment, ordered by pts in dist order
+          cntrpts - center points of clusters 
+          nclust  - number of clusters
+          halo    - number of clusters
+ 
+ Source:
+  Alex Rodriguez, Alessandro Laio
+  Clustering by fast search and find of density peaks
+  Science 27 June 2014:
+  Vol. 344 no. 6191 pp. 1492-1496
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Create cluster list for distance matrix 
+ INPUTS:  d - output of pdist
+        
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+loc_inconsistent
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 429
+ calculate inconsistency coefficient of the output of 
+ the linkage function.
+ INPUTS: tree
+         optional depth, default is 2
+ OUTPUTS:
+          I  TABLE, like so:
+          mean    stddev   # clusters in level    inconsistency coefficient
+          CLUS a cell array that lists the cluster(s) that the I table
+          used for each row, that is I(1) -> CLUS{1}
+ matlab orders the table from the bottom up, so we do, too.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 77
+ calculate inconsistency coefficient of the output of 
+ the linkage function.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+loc_kmeans
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 137
+ -- Function File: [IDX, CENTERS] = loc_kmeans (DATA, K, PARAM1, VALUE1,
+          ...)
+     K-means clustering.
+
+     See also: linkage.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+K-means clustering.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+loc_linkage
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2930
+ -- Function File: Y = linkage (D)
+ -- Function File: Y = linkage (D, METHOD)
+ -- Function File: Y = linkage (X, METHOD, METRIC)
+ -- Function File: Y = linkage (X, METHOD, ARGLIST)
+
+     Produce a hierarchical clustering dendrogram
+
+     D is the dissimilarity matrix relative to n observations, formatted
+     as a (n-1)*n/2x1 vector as produced by 'pdist'.  Alternatively, X
+     contains data formatted for input to 'pdist', METRIC is a metric
+     for 'pdist' and ARGLIST is a cell array containing arguments that
+     are passed to 'pdist'.
+
+     'linkage' starts by putting each observation into a singleton
+     cluster and numbering those from 1 to n.  Then it merges two
+     clusters, chosen according to METHOD, to create a new cluster
+     numbered n+1, and so on until all observations are grouped into a
+     single cluster numbered 2(n-1).  Row k of the (m-1)x3 output matrix
+     relates to cluster n+k: the first two columns are the numbers of
+     the two component clusters and column 3 contains their distance.
+
+     METHOD defines the way the distance between two clusters is
+     computed and how they are recomputed when two clusters are merged:
+
+     '"single" (default)'
+          Distance between two clusters is the minimum distance between
+          two elements belonging each to one cluster.  Produces a
+          cluster tree known as minimum spanning tree.
+
+     '"complete"'
+          Furthest distance between two elements belonging each to one
+          cluster.
+
+     '"average"'
+          Unweighted pair group method with averaging (UPGMA). The mean
+          distance between all pair of elements each belonging to one
+          cluster.
+
+     '"weighted"'
+          Weighted pair group method with averaging (WPGMA). When two
+          clusters A and B are joined together, the new distance to a
+          cluster C is the mean between distances A-C and B-C.
+
+     '"centroid"'
+          Unweighted Pair-Group Method using Centroids (UPGMC). Assumes
+          Euclidean metric.  The distance between cluster centroids,
+          each centroid being the center of mass of a cluster.
+
+     '"median"'
+          Weighted pair-group method using centroids (WPGMC). Assumes
+          Euclidean metric.  Distance between cluster centroids.  When
+          two clusters are joined together, the new centroid is the
+          midpoint between the joined centroids.
+
+     '"ward"'
+          Ward's sum of squared deviations about the group mean (ESS).
+          Also known as minimum variance or inner squared distance.
+          Assumes Euclidean metric.  How much the moment of inertia of
+          the merged cluster exceeds the sum of those of the individual
+          clusters.
+
+     *Reference* Ward, J. H. Hierarchical Grouping to Optimize an
+     Objective Function J. Am.  Statist.  Assoc.  1963, 58, 236-244,
+     <http://iv.slis.indiana.edu/sw/data/ward.pdf>.
+
+See also: pdist,squareform.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 44
+Produce a hierarchical clustering dendrogram
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+loc_menu
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 470
+ -- Function File: menu (TITLE, OPT1, ...)
+     Print a title string followed by a series of options.  Each option
+     will be printed along with a number.  The return value is the
+     number of the option selected by the user.  This function is useful
+     for interactive programs.  There is no limit to the number of
+     options that may be passed in, but it may be confusing to present
+     more than will fit easily on one screen.
+
+     See also: input, listdlg.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 53
+Print a title string followed by a series of options.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+loc_pdist
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2502
+ -- Function File: Y = loc_pdist (X)
+ -- Function File: Y = loc_pdist (X, METRIC)
+ -- Function File: Y = loc_pdist (X, METRIC, METRICARG, ...)
+
+     Return the distance between any two rows in X.
+
+     X is the NxD matrix representing Q row vectors of size D.
+
+     The output is a dissimilarity matrix formatted as a row vector Y,
+     (n-1)*n/2 long, where the distances are in the order [(1, 2) (1, 3)
+     ... (2, 3) ... (n-1, n)].  You can use the 'squareform' function to
+     display the distances between the vectors arranged into an NxN
+     matrix.
+
+     'metric' is an optional argument specifying how the distance is
+     computed.  It can be any of the following ones, defaulting to
+     "euclidean", or a user defined function that takes two arguments X
+     and Y plus any number of optional arguments, where X is a row
+     vector and and Y is a matrix having the same number of columns as
+     X.  'metric' returns a column vector where row I is the distance
+     between X and row I of Y.  Any additional arguments after the
+     'metric' are passed as metric (X, Y, METRICARG1, METRICARG2 ...).
+
+     Predefined distance functions are:
+
+     '"euclidean"'
+          Euclidean distance (default).
+
+     '"seuclidean"'
+          Standardized Euclidean distance.  Each coordinate in the sum
+          of squares is inverse weighted by the sample variance of that
+          coordinate.
+
+     '"mahalanobis"'
+          Mahalanobis distance: see the function mahalanobis.
+
+     '"cityblock"'
+          City Block metric, aka Manhattan distance.
+
+     '"minkowski"'
+          Minkowski metric.  Accepts a numeric parameter P: for P=1 this
+          is the same as the cityblock metric, with P=2 (default) it is
+          equal to the euclidean metric.
+
+     '"cosine"'
+          One minus the cosine of the included angle between rows, seen
+          as vectors.
+
+     '"correlation"'
+          One minus the sample correlation between points (treated as
+          sequences of values).
+
+     '"spearman"'
+          One minus the sample Spearman's rank correlation between
+          observations, treated as sequences of values.
+
+     '"hamming"'
+          Hamming distance: the quote of the number of coordinates that
+          differ.
+
+     '"jaccard"'
+          One minus the Jaccard coefficient, the quote of nonzero
+          coordinates that differ.
+
+     '"chebychev"'
+          Chebychev distance: the maximum coordinate difference.
+
+     See also: linkage, mahalanobis, squareform.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 46
+Return the distance between any two rows in X.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+mod_depth1
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 724
+ function [hi_start hi_width mod_depth] = mod_depth1(cth)
+ Find high rate and low rate region for set of 1 or more cths
+ for all possible widths and all possible starting points 
+ Will be numbins starting points and numbins-1 possible widths
+ numbins*(nimbins-1) possible splits
+ Determine which split has the maximum mean high rate:
+   mean rate = sum of bin values in split / num bins in split
+   For that split, calculate modulation depth:
+   (mean_high_rate-mean_lo_rate) / (mean_high_rate+mean_lo_rate) 
+ INPUTS:
+          matrix of points [rows numbins]
+ OUTPUTS:
+          vector [rows 1] start bin for high rate split
+          vector [rows 1] width of high rate split
+          vector [rows 1] modululation depth 
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ function [hi_start hi_width mod_depth] = mod_depth1(cth)
+ Find high rate and lo
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+mod_depth2
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1165
+ function [hi_start hi_width mod_depth] = mod_depth2(cth)
+ Find high rate and low rate region for set of 1 or more cths
+   how to determine 1 high and 1 low rate region, the mark II version
+   arbitrary rule:  if bin == mean, include it with high rate bins
+   find mean of cth
+   find incursions, which is where bin goes from above/below mean to
+   below/above mean and conversely. 
+   If num regions > 2
+      Find lowest incursion.
+      if in high, include it with low rate set, remove from high
+      if in low, include it with high rate set, remove from low
+      continue until num regions == 2
+
+   start bin is first bin in high rate region. (don't forget about wrap around)
+   calculate modulation 
+      mod_depth = (hi_rate-lo_rate) ./ (hi_rate+lo_rate);
+ INPUTS:
+          matrix of points [rows numbins]
+ OUTPUTS:
+          vector [rows 1] start bin for high rate split
+          vector [rows 1] width of high rate split
+          vector [rows 1] modululation depth 
+          vector [rows 1] error stat, measure of how much we had to
+                          tweak regions to merge to 2.
+          vector [rows 1] error stat, histogram of # of merges
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ function [hi_start hi_width mod_depth] = mod_depth2(cth)
+ Find high rate and lo
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+opt_derive
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 648
+ Function to calculate y axis scaling factors to ensure 90%
+ of the points are visible.  Many of the deriviative plots
+ at little more than a flat line with a narrow spike or two.
+ This happens because close knots in the fitted curve result
+ in large delta Y values.  There are generally very few of these points.
+ This finds y min and max values that zoom in on the points that 
+ are mostly on a line at the expense of clipping the narrow spikes.
+ Returns ymin and ymax unless the derivative is all the same value,
+ in which case the caller can let autoscale draw the straight line that
+ is the derivative and scale as the plot function sees fit.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Function to calculate y axis scaling factors to ensure 90%
+ of the points are v
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+poifit
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+ test poisson fitting
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+ test poisson fitting
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+project2
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 248
+ do a projection of vect onto plane subspace e1 and e2 as basis 
+ Use e1 e2 basis vectors and project pt(s) into the plane they determine
+ ref: http://math.stackexchange.com/questions/185546/how-to-project-a-n-dimensional-point-onto-a-2-d-subspace
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ do a projection of vect onto plane subspace e1 and e2 as basis 
+ Use e1 e2 basi
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+project3
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 188
+ Use e1 e2 e3 basis vectors and project pt(s) into the space they determine
+ ref: http://math.stackexchange.com/questions/185546/how-to-project-a-n-dimensional-point-onto-a-2-d-subspace
+ 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Use e1 e2 e3 basis vectors and project pt(s) into the space they determine
+ ref
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+pval
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 281
+ Cacluate Pearson's chi-squared for some cth elements
+
+ INPUTS:  obsv  - set of observations
+          exptd - expected value
+          df    - degrees of freedom
+ OUTPUTS: p - probability it is a random distribution
+
+ ref: http://en.wikipedia.org/wiki/Pearson's_chi-squared_test 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 53
+ Cacluate Pearson's chi-squared for some cth elements
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+save_clust
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 823
+ Function to save a subset of points in the given cluster to
+ a file that looks like the input file to cth_project.m.
+ The goal is to select a subset, e.g., a bunch of near-flats,
+ and to attempt to create clusters from just those points in a later run.
+
+  INPUTS:  
+   names  struct with point names in them, in same order as distz
+   distz  distance matrix of all non-flats plus the zero flat
+   cnum   cluster number(s) to select (could be several)
+   dend   the dendrogram indexes, which pts are in the cluster
+   infname  name to read from
+   outfname  name to save to
+ This expects to find % START MARK and % END MARK markers in the
+ text input file.  The START MARK line will also have other text
+ that we can match (such as var name).  This copies everything 
+ between the START and END mark lines, including them.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Function to save a subset of points in the given cluster to
+ a file that looks 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+scroll_plots
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 227
+ Scroll the bar plot windows.
+ This is really some in-line code from cth_project that both the GUI 
+ and terminal UIs need.
+ Passed: entirely too much stuff.
+ Returns: current postion for later
+ and the error bar plot windows.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+ Scroll the bar plot windows.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+show_stereo
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 62
+ Show the selected clusters in the stereotaxic cluster plot
+
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 59
+ Show the selected clusters in the stereotaxic cluster plot
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+showbars
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 491
+ Plot one or more cth's as subplots in a plot window
+  INPUTS:
+          cnum:      chart # 
+          names:     variable names
+          pts:       pt coordinates, ordered same as names 
+          colors:    bar color 
+          x,y,w,h:   dimensions of window
+          bgnd:      background color of histograms
+          meanbar:   optional histogram, expected to be
+                     the centroid of the set
+          autoscale: use same fixed max Y for all plots, or autoscale each
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Plot one or more cth's as subplots in a plot window
+  INPUTS:
+          cnum:  
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+showcurves
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 842
+  Create a figure and display spline curves fitted to cths.
+  These are generated by an R program (cth_para.R at this time)
+  INPUTS:
+          cnum      - chart title text
+          dnum      - optional derivative title text
+          names     - variable names 
+          curve     - array of structs holding curves, ordered same as name
+          colors    - bar color 
+          x,y,w,h   - dimensions of window
+          bgnd      - background color of histograms
+          scale     - 1 for manual scale, 2 for autoscale
+          do_derive - Calculate derivatvies for curves and show in derivative window
+          The last three elements of each curve are not points to plot,
+          they are:
+          p value
+          dispersion value
+          number of knots the spline fitter used
+  OUTPUT: 
+         fig - handle to figure 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 59
+  Create a figure and display spline curves fitted to cths.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+showdetail
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 133
+ Utility to show a subset of pts/cths and stats in a window
+ Inputs:  points to show
+ Outputs: Handle to window, 0 if user bails out
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Utility to show a subset of pts/cths and stats in a window
+ Inputs:  points to 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+showisobars
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 506
+ Specialized version of showbars to plot
+ all cths in one window using multiple length rows and colors.
+  INPUTS:
+          cnum:       chart # 
+          names:      variable names
+          pts:        pt coordinates, ordered same as names 
+          yvals:      Y coordinates sorted low to high
+          colors:     color table
+          x,y,w,h:    dimensions of window
+          bgnd:       background color of histograms
+         do_isoscale: scale all bar charts to same scale or best fit for each
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Specialized version of showbars to plot
+ all cths in one window using multiple 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+showisoscatt
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 450
+ showisoscatt - show scatter plot for isomap, coloring based on
+                magnitude of the axis.  That is, map a spectrum onto the
+                points ordered from min to max.
+  INPUTS:
+          cnum:      chart # 
+          names:     variable names
+          pts:       pt coordinates, ordered same as names 
+          yvals:     Y coordinates sorted low to high
+          colors:    color table
+          x,y,w,h:   dimensions of window
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ showisoscatt - show scatter plot for isomap, coloring based on
+                
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+showisostats
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 639
+ Specialized version of showstats to plot the cth stats
+ in one window using multiple length rows and colors.
+  Create a figure and display mean rate and scaled std err as 
+  error bars for current cluster.
+  INPUTS:
+          cnum     - chart # 
+          names    - variable names 
+          stats    - array of structs holding stats, ordered same as name
+          yvals    - Y coordinates sorted high to low
+          colors   - bar color 
+          x,y,w,h  - dimensions of window
+          bgnd     - background color of histograms
+          erbscale - 1 for manual scale, 2 for autoscale
+  OUTPUT: 
+         fig - handle to figure 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Specialized version of showstats to plot the cth stats
+ in one window using mul
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+showstats
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 475
+  Create a figure and display mean rate and scaled std err as 
+  error bars for current cluster.
+  INPUTS:
+          cnum     - chart # 
+          names    - variable names 
+          stats    - array of structs holding stats, ordered same as name
+          colors   - bar color 
+          x,y,w,h  - dimensions of window
+          bgnd     - background color of histograms
+          erbscale - 1 for manual scale, 2 for autoscale
+  OUTPUT: 
+         fig - handle to figure 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+  Create a figure and display mean rate and scaled std err as 
+  error bars for 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+subplotdim
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 290
+ Calculate the best fit for subplots given the number of subplots we are going
+ to have to display.  This assumes it needs to leave room for a blank subplot
+ and then the mean subplot.  Even for subplots that do not have these, we
+ assume they do so sibling plots correspond to each other.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ Calculate the best fit for subplots given the number of subplots we are going
+ 
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+td
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+test some dendogram stuff
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+test some dendogram stuff
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+tilemon1d1
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 434
+ utility function to start and keep track of tile locations for displaying 
+ plot windows on monitor 1 on the primary desktop.
+ This assumes you are using 2 monitors and that they are both the same size.
+ The screensize reported will be the width of both monitors.  So, width/2
+ is assumed to be the width of one monitor.
+ If one monitor is smaller than the other, the dimensions of the smaller
+ will also be used for the larger one.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ utility function to start and keep track of tile locations for displaying 
+ plo
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+tilemon1d2
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 347
+ utility function to start and keep track of tile locations for displaying 
+ plot windows on monitor 1 on the desktop to the right of the primary one.
+ This assumes you are using 2 monitors and that they are both the same size.
+ The screensize reported will be the width of both monitors.  So, width/2
+ is assumed to be the width of one monitor.
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ utility function to start and keep track of tile locations for displaying 
+ plo
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+tilemon2d1
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 323
+ utility function to start and keep track of tile locations for displaying 
+ plot windows on monitor 2 on the primary desktop.
+ This assumes you are using 2 monitors and that they are both the same size.
+ The screensize reported will be the width of both monitors.  So, width/2
+ is assumed to be the width of one monitor.
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ utility function to start and keep track of tile locations for displaying 
+ plo
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+tilemon2d2
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 347
+ utility function to start and keep track of tile locations for displaying 
+ plot windows on monitor 2 on the desktop to the right of the primary one.
+ This assumes you are using 2 monitors and that they are both the same size.
+ The screensize reported will be the width of both monitors.  So, width/2
+ is assumed to be the width of one monitor.
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+ utility function to start and keep track of tile locations for displaying 
+ plo
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+time_to_quit
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 70
+ Exit hook test function
+ When cth_project exists, we go through here
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 70
+ Exit hook test function
+ When cth_project exists, we go through here
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+ui_msg
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 363
+ Display info.
+ If using the gui, send it via the socket interface.
+ If using local ui, send it to the terminal.
+ Since text can be fragmented, we add a delimter to the end of the
+ passed-in text.  Embedded newlines are okay, it does not have to 
+ be just one line of text.  The gui program will accumulate the text
+ until it sees the delimiter, then display it.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+ Display info.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+ui_prompt
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 33
+ wait until response sent by gui
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 33
+ wait until response sent by gui
+
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+v38_subplot
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2252
+ -- Function File: subplot (ROWS, COLS, INDEX)
+ -- Function File: subplot (RCN)
+ -- Function File: subplot (HAX)
+ -- Function File: subplot (..., "align")
+ -- Function File: subplot (..., "replace")
+ -- Function File: subplot (..., "position", POS)
+ -- Function File: subplot (..., PROP, VAL, ...)
+ -- Function File: HAX = subplot (...)
+     Set up a plot grid with ROWS by COLS subwindows and set the current
+     axes for plotting ('gca') to the location given by INDEX.
+
+     If only one numeric argument is supplied, then it must be a three
+     digit value specifying the number of rows in digit 1, the number of
+     columns in digit 2, and the plot index in digit 3.
+
+     The plot index runs row-wise; First, all columns in a row are
+     numbered and then the next row is filled.
+
+     For example, a plot with 2x3 grid will have plot indices running as
+     follows:
+
+          +-----+-----+-----+
+          |  1  |  2  |  3  |
+          +-----+-----+-----+
+          |  4  |  5  |  6  |
+          +-----+-----+-----+
+
+     INDEX may also be a vector.  In this case, the new axis will
+     enclose the grid locations specified.  The first demo illustrates
+     this:
+
+          demo ("subplot", 1)
+
+     The index of the subplot to make active may also be specified by
+     its axes handle, HAX, returned from a previous 'subplot' command.
+
+     If the option "align" is given then the plot boxes of the
+     subwindows will align, but this may leave no room for axis tick
+     marks or labels.
+
+     If the option "replace" is given then the subplot axis will be
+     reset, rather than just switching the current axis for plotting to
+     the requested subplot.
+
+     The "position" property can be used to exactly position the subplot
+     axes within the current figure.  The option POS is a 4-element
+     vector [x, y, width, height] that determines the location and size
+     of the axes.  The values in POS are normalized in the range [0,1].
+
+     Any property/value pairs are passed directly to the underlying axes
+     object.
+
+     If the output HAX is requested, subplot returns the axis handle for
+     the subplot.  This is useful for modifying the properties of a
+     subplot using 'set'.
+
+     See also: axes, plot, gca, set.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 80
+Set up a plot grid with ROWS by COLS subwindows and set the current axes
+for plo
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+win_consts
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 67
+ some window constants used by some of the plot display functions.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 66
+ some window constants used by some of the plot display functions.
+
+
+
+
+

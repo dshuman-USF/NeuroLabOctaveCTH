@@ -1,0 +1,4 @@
+The .cpp file herein creates a .mex file. If this is not possible, the .m file
+could be used. However, the way the search path order is, if we put the .m file
+in the inst directory, it will get called, not the mex file. Since we can use
+the .mex file. the .m file is not used.

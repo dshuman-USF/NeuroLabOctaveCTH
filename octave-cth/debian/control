@@ -1,0 +1,45 @@
+Source: octave-cth
+Section: math
+Priority: optional
+Maintainer: dshuman
+Build-Depends: debhelper (>= 9), 
+   cdbs, 
+   octave-pkg-dev (>= 2.0.1),
+   dh-octave (>= 0.3.2),
+   octave (>= 4.2.0),
+   octave-common (>= 4.2.0),
+   octave-general (>= 2.0.0),
+   octave-geometry (>= 3.0.0),
+   octave-io (>= 2.4.7),
+   octave-linear-algebra (>= 2.2.2),
+   octave-sockets (>= 1.2.0),
+   octave-statistics (>= 1.3.0),
+   octave-struct (>= 1.0.14),
+   libfreexl-dev,
+   libfltk1.3,
+   wmctrl,
+   xdotool,
+   libcurl4
+Standards-Version: 4.2.1
+Homepage: 
+
+Package: octave-cth
+Section: math
+Architecture: all
+Depends: ${misc:Depends}
+   octave (>= 4.2.0),
+   octave-common (>= 4.2.0),
+   octave-general (>= 2.0.0),
+   octave-geometry (>= 3.0.0),
+   octave-io (>= 2.4.7),
+   octave-linear-algebra (>= 2.2.2),
+   octave-sockets (>= 1.2.0),
+   octave-statistics (>= 1.3.0),
+   octave-struct (>= 1.0.14)
+Description: octave .m files for cth cluster analysis
+ .
+ The octave programs in this package are part of the lab's CTH cluster
+ analysis package.  There is a separate GUI used by cth_project.m.  This
+ package can be executed in a terminal-only mode, but is easier to work with
+ using the cthgui GUI executable, which is available in the cth-cluster
+ package.

@@ -1,0 +1,8 @@
+## PKG_ADD
+## Create doc-cache file for lookup function
+
+  try
+     doc_cache_create("doc-cache",".")
+  catch
+     warning("Problems creating document cache for octave-cth")
+  end_try_catch
